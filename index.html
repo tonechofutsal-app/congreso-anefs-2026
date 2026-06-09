@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Congreso Nacional ANEFS - Melide 2026</title>
+    <title>XXVII Congreso Nacional ANEFS - Melide 2026</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
@@ -14,16 +14,102 @@
             --futsal-orange: #FF5500;      
             --futsal-card-bg: rgba(255, 255, 255, 0.94); 
             --text-main: #0F172A;          
+            --text-muted: #475569;
             --font-title: 'Montserrat', sans-serif;
             --font-body: 'Rubik', sans-serif;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        html, body { height: 100%; width: 100%; overflow: hidden; font-family: var(--font-body); }
-        body { background-color: #0f52ba; display: flex; flex-direction: column; }
-        .app-page { display: none; width: 100%; height: 100%; flex-direction: column; position: absolute; top: 0; left: 0; z-index: 2; }
-        .app-page.active { display: flex; }
         
+        html, body {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            font-family: var(--font-body);
+        }
+
+        /* DISEÑO DE LA CANCHA DE FÚTBOL SALA COMPLETA */
+        body { 
+            background-color: #0f52ba; 
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            
+            background-image: 
+                linear-gradient(to bottom, transparent 49.6%, rgba(255,255,255,0.8) 49.6%, rgba(255,255,255,0.8) 50.4%, transparent 50.4%),
+                radial-gradient(circle at center top, transparent 18%, rgba(255,255,255,0.7) 18.5%, rgba(255,255,255,0.7) 19.5%, transparent 20%),
+                radial-gradient(circle at center bottom, transparent 18%, rgba(255,255,255,0.7) 18.5%, rgba(255,255,255,0.7) 19.5%, transparent 20%),
+                linear-gradient(to right, rgba(255,255,255,0.8) 2px, transparent 2px),
+                linear-gradient(to left, rgba(255,255,255,0.8) 2px, transparent 2px),
+                linear-gradient(to bottom, rgba(255,255,255,0.8) 2px, transparent 2px),
+                linear-gradient(to top, rgba(255,255,255,0.8) 2px, transparent 2px);
+            background-size: 100% 100%;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: 
+                radial-gradient(circle at center center, transparent 12%, rgba(255,255,255,0.8) 12.5%, rgba(255,255,255,0.8) 13.5%, transparent 14%),
+                radial-gradient(circle at center 18%, rgba(255,255,255,0.9) 3px, transparent 4px),
+                radial-gradient(circle at center 30%, rgba(255,255,255,0.9) 2px, transparent 3px),
+                radial-gradient(circle at center 82%, rgba(255,255,255,0.9) 3px, transparent 4px),
+                radial-gradient(circle at center 70%, rgba(255,255,255,0.9) 2px, transparent 3px),
+                linear-gradient(to bottom, #e74c3c 6px, transparent 6px),
+                linear-gradient(to top, #e74c3c 6px, transparent 6px);
+            background-position: center center, center top, center top, center bottom, center bottom, center top, center bottom;
+            background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 80px 12px, 80px 12px;
+            background-repeat: no-repeat;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        body::after {
+            content: "\f3ed"; 
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 28px;
+            z-index: 1;
+            pointer-events: none;
+            background: rgba(0, 82, 204, 0.6);
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 2px dashed rgba(255, 255, 255, 0.5);
+        }
+
+        /* SISTEMA MULTIPÁGINA */
+        .app-page {
+            display: none;
+            width: 100%;
+            height: 100%;
+            flex-direction: column;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 2;
+        }
+
+        .app-page.active {
+            display: flex;
+            animation: fadeIn 0.2s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* CABECERA */
         .app-header {
             background: linear-gradient(135deg, rgba(0, 82, 204, 0.98) 0%, rgba(0, 44, 115, 0.98) 100%);
             padding: 16px 20px;
@@ -32,88 +118,403 @@
             gap: 12px;
             border-bottom: 4px solid var(--futsal-orange);
             color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+            z-index: 10;
+            flex-shrink: 0;
         }
 
         .logo-placeholder {
-            width: 46px; height: 46px; background-color: white; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            border: 2px solid var(--futsal-orange); overflow: hidden;
+            width: 46px;
+            height: 46px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            flex-shrink: 0;
+            border: 2px solid var(--futsal-orange);
+            color: var(--futsal-blue);
+            font-size: 18px;
         }
-        .logo-placeholder img { width: 100%; height: 100%; object-fit: cover; }
 
-        .content-area { flex-grow: 1; padding: 24px 20px; overflow-y: auto; display: flex; flex-direction: column; }
-        .page-title { font-family: var(--font-title); font-size: 22px; font-weight: 800; color: #FFFFFF; margin-bottom: 20px; }
+        .header-info { flex-grow: 1; }
+        .header-info h2 {
+            font-family: var(--font-title);
+            font-size: 14px;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+            line-height: 1.2;
+        }
+        .header-info p {
+            font-size: 10px;
+            color: #99CCFF;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-top: 1px;
+        }
 
+        /* CONTENIDO TRANSLÚCIDO */
+        .content-area {
+            flex-grow: 1;
+            padding: 24px 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            -webkit-overflow-scrolling: touch;
+            z-index: 5;
+        }
+
+        .page-title {
+            font-family: var(--font-title);
+            font-size: 22px;
+            font-weight: 800;
+            color: #FFFFFF;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.85);
+        }
+
+        .page-title::before {
+            content: "";
+            width: 5px;
+            height: 22px;
+            background: var(--futsal-orange);
+            border-radius: 3px;
+        }
+
+        /* BOTONES */
         .btn-happy {
             background: linear-gradient(135deg, var(--futsal-orange) 0%, #E64A00 100%);
-            color: white; padding: 15px 28px; border-radius: 14px; text-decoration: none;
-            font-family: var(--font-title); font-weight: 800; font-size: 14px;
-            display: inline-flex; align-items: center; justify-content: center; gap: 10px; border: none; cursor: pointer;
+            color: white;
+            padding: 15px 28px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-family: var(--font-title);
+            font-weight: 800;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 6px 20px rgba(255, 85, 0, 0.4);
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
         }
 
-        .btn-back { background: rgba(255, 255, 255, 0.2); border: 1px solid rgba(255, 255, 255, 0.4); color: white; padding: 6px 12px; border-radius: 20px; font-size: 11px; cursor: pointer; }
-        .menu-card { background: var(--futsal-card-bg); border-radius: 16px; padding: 18px 20px; display: flex; align-items: center; gap: 16px; cursor: pointer; }
-        .menu-card i { font-size: 20px; color: white; background: var(--futsal-blue); width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; }
-        .menu-card h3 { font-size: 16px; color: var(--text-main); font-weight: 700; }
+        .btn-happy:active { transform: scale(0.97); }
 
-        .diptico-box { display: flex; align-items: center; justify-content: space-between; background: white; padding: 14px 16px; border-radius: 12px; margin-bottom: 12px; border-left: 4px solid var(--futsal-orange); }
-        .diptico-box span { font-weight: 700; font-size: 14px; color: var(--text-main); display: flex; align-items: center; }
-        .btn-pdf-link { background-color: #E74C3C; color: white; padding: 8px 16px; border-radius: 8px; text-decoration: none; font-size: 12px; font-weight: 700; }
+        .btn-back {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* MENÚS Y TARJETAS */
+        .menu-vertical-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .menu-card {
+            background: var(--futsal-card-bg);
+            border-radius: 16px;
+            padding: 18px 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .menu-card:active { background: #FFFFFF; }
+
+        .menu-card i {
+            font-size: 20px;
+            color: white;
+            background: linear-gradient(135deg, var(--futsal-blue) 0%, #003B99 100%);
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .menu-card h3 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .info-card-white {
+            background: var(--futsal-card-bg);
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+            margin-bottom: 16px;
+        }
+
+        .diptico-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: white;
+            padding: 12px 16px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--futsal-orange);
+        }
+        .diptico-box span { font-weight: 700; font-size: 13px; color: var(--text-main); }
+        .btn-pdf-link {
+            background-color: #E74C3C;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .link-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            padding: 14px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+
+        .btn-link {
+            padding: 8px 12px;
+            border-radius: 8px;
+            color: white;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 700;
+        }
+        .btn-link.maps { background-color: #2ECC71; }
+
+        .agenda-item {
+            background: white;
+            padding: 14px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            border-left: 5px solid var(--futsal-blue);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .agenda-time { font-weight: 800; color: var(--futsal-orange); font-size: 13px; }
+        .agenda-title { font-weight: 700; font-size: 14px; margin: 4px 0; color: var(--text-main); }
+        .agenda-place { font-size: 12px; color: var(--text-muted); }
+
+        .speaker-strip {
+            background: white;
+            padding: 14px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .speaker-icon {
+            width: 42px;
+            height: 42px;
+            background: #EBF3FF;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--futsal-blue);
+            font-size: 16px;
+        }
     </style>
 </head>
 <body>
 
     <div class="app-page active" id="page-welcome">
         <div class="app-header">
-            <div class="logo-placeholder"><img src="./logo_anefs.png.png" alt="Logo"></div>
-            <div style="flex-grow:1;">
-                <h2 style="font-size:14px;">ANEFS FÚTBOL SALA</h2>
+            <div class="logo-placeholder"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="header-info">
+                <h2>ANEFS FÚTBOL SALA</h2>
+                <p>Asociación Nacional de Entrenadores</p>
             </div>
         </div>
-        <div class="content-area" style="text-align: center; justify-content: center; align-items: center; gap: 40px;">
-            <div style="background: var(--futsal-blue); color: white; padding: 20px; border-radius: 16px; font-weight: 800; font-size: 22px; width: 100%;">
-                XXVII Congreso Nacional <br><span style="color: var(--futsal-orange);">Melide 2026</span>
+        
+        <div class="content-area" style="text-align: center; justify-content: space-between; align-items: center; padding-top: 30px; padding-bottom: 40px;">
+            <div style="background: linear-gradient(135deg, var(--futsal-blue) 0%, #003B99 100%); color: white; padding: 16px 24px; border-radius: 16px; font-weight: 800; font-size: 20px; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 6px 16px rgba(0,0,0,0.4); width: 100%; max-width: 360px; line-height: 1.4; border: 2px solid rgba(255,255,255,0.2);">
+                XXVII Congreso Nacional <br><span style="color: var(--futsal-orange); font-size: 16px; font-weight: 700;">Melide 2026</span>
             </div>
-            <button onclick="irAPagina('page-main-menu')" class="btn-happy" style="width: 100%;">Entrar a la Guía <i class="fa-solid fa-arrow-right"></i></button>
+            
+            <div style="margin: 20px 0;">
+                <h1 style="font-family: var(--font-title); font-size: 36px; font-weight: 800; color: #FFFFFF; line-height: 1.2; text-transform: uppercase; text-shadow: 0 4px 14px rgba(0,0,0,0.95);">
+                    ¡Pasión por la <br><span style="color: var(--futsal-orange);">Pizarra</span>!
+                </h1>
+                
+                <div style="font-size: 36px; color: var(--futsal-orange); display: flex; justify-content: center; gap: 24px; margin-top: 25px; text-shadow: 0 3px 10px rgba(0,0,0,0.9);">
+                    <i class="fa-solid fa-clipboard-list"></i>
+                    <i class="fa-solid fa-stopwatch"></i>
+                    <i class="fa-solid fa-people-group"></i>
+                </div>
+            </div>
+            
+            <button onclick="irAPagina('page-main-menu')" class="btn-happy" style="width: 100%; max-width: 320px;">Entrar a la Guía <i class="fa-solid fa-arrow-right"></i></button>
         </div>
     </div>
 
     <div class="app-page" id="page-main-menu">
         <div class="app-header">
-            <div class="logo-placeholder"><img src="./logo_anefs.png.png" alt="Logo"></div>
-            <div style="flex-grow:1;"><h2 style="font-size:14px;">MENÚ PRINCIPAL</h2></div>
+            <div class="logo-placeholder"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="header-info">
+                <h2>XXVII CONGRESO NACIONAL</h2>
+                <p>Panel de Control Oficial</p>
+            </div>
+            <button onclick="irAPagina('page-welcome')" class="btn-back"><i class="fa-solid fa-house"></i> Inicio</button>
         </div>
         <div class="content-area">
-            <div onclick="irAPagina('page-info-melide')" class="menu-card">
-                <i class="fa-solid fa-map-location-dot"></i>
-                <h3>Dípticos e Información de Melide</h3>
+            <h2 class="page-title">Secciones de Interés</h2>
+            <div class="menu-vertical-grid">
+                <div onclick="irAPagina('page-info-melide')" class="menu-card"><i class="fa-solid fa-map-location-dot"></i><h3>Melide</h3></div>
+                <div onclick="irAPagina('page-congreso-sedes')" class="menu-card"><i class="fa-solid fa-building-columns"></i><h3>Sedes e Instalaciones</h3></div>
+                <div onclick="irAPagina('page-agenda-horarios')" class="menu-card"><i class="fa-solid fa-calendar-days"></i><h3>Cronograma y Horarios</h3></div>
+                <div onclick="irAPagina('page-lista-ponentes')" class="menu-card"><i class="fa-solid fa-chalkboard-user"></i><h3>Ponentes de Futsal</h3></div>
+                <div onclick="irAPagina('page-lista-colaboradores')" class="menu-card"><i class="fa-solid fa-handshake-angle"></i><h3>Colaboradores Oficiales</h3></div>
             </div>
         </div>
     </div>
 
     <div class="app-page" id="page-info-melide">
         <div class="app-header">
-            <div class="logo-placeholder"><img src="./logo_anefs.png.png" alt="Logo"></div>
-            <div style="flex-grow:1;"><h2 style="font-size:14px;">DESCARGAS</h2></div>
-            <button onclick="irAPagina('page-main-menu')" class="btn-back">Menú</button>
+            <div class="logo-placeholder"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="header-info"><h2>ENTORNO DE LA SEDE</h2><p>Dípticos e Información Local</p></div>
+            <button onclick="irAPagina('page-main-menu')" class="btn-back"><i class="fa-solid fa-bars"></i> Menú</button>
         </div>
         <div class="content-area">
-            <h2 class="page-title">Descarga tus PDFs:</h2>
+            <h2 class="page-title">Descubre Melide</h2>
             
-            <div class="diptico-box">
-                <span><i class="fa-solid fa-file-pdf" style="color:#e74c3c; margin-right:6px;"></i> Guía de Melide</span>
-                <a href="./guia_melide.pdf" target="_blank" class="btn-pdf-link">Abrir</a>
+            <h3 style="font-size: 13px; margin-bottom: 8px; color: #FFFFFF; text-transform: uppercase; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">Dípticos del Congreso:</h3>
+            <div style="margin-bottom: 20px;">
+                <div class="diptico-box"><span><i class="fa-solid fa-file-pdf" style="color:#e74c3c; margin-right:6px;"></i> Guia de Melide</span><a href="https://www.concellodemelide.org/turismo/dipticos/guia_melide.pdf" target="_blank" class="btn-pdf-link">Abrir PDF</a></div>
+                <div class="diptico-box"><span><i class="fa-solid fa-file-pdf" style="color:#e74c3c; margin-right:6px;"></i> Un dia en Melide</span><a href="https://www.concellodemelide.org/turismo/dipticos/un_dia_en_melide.pdf" target="_blank" class="btn-pdf-link">Abrir PDF</a></div>
+                <div class="diptico-box"><span><i class="fa-solid fa-file-pdf" style="color:#e74c3c; margin-right:6px;"></i> Rueiro - Callejero</span><a href="https://www.concellodemelide.org/turismo/dipticos/rueiro_melide.pdf" target="_blank" class="btn-pdf-link">Abrir PDF</a></div>
             </div>
-            
-            <div class="diptico-box">
-                <span><i class="fa-solid fa-file-pdf" style="color:#e74c3c; margin-right:6px;"></i> Un día en Melide</span>
-                <a href="./un_dia_en_melide.pdf" target="_blank" class="btn-pdf-link">Abrir</a>
+
+            <h3 style="font-size: 13px; margin-bottom: 10px; color: #FFFFFF; text-transform: uppercase; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">Lugares de Interés:</h3>
+            <div class="link-box"><strong>Museo Terra de Melide</strong><a href="https://www.google.com/maps/search/?api=1&query=Museo+Terra+de+Melide+Galicia" target="_blank" class="btn-link maps">Ver Mapa</a></div>
+            <div class="link-box"><strong>Cruceiro Histórico</strong><a href="https://www.google.com/maps/search/?api=1&query=Cruceiro+de+Melide+Obra+de+San+Roque" target="_blank" class="btn-link maps">Ver Mapa</a></div>
+            <div class="link-box"><strong>Puente Romano</strong><a href="https://www.google.com/maps/search/?api=1&query=Ponte+vella+de+Furelos+Melide" target="_blank" class="btn-link maps">Ver Mapa</a></div>
+            <div class="link-box" style="border-left: 4px solid #2ECC71;"><strong>Área Recreativa de Furelos</strong><a href="https://www.google.com/maps/search/?api=1&query=Area+Recreativa+de+Furelos+Melide" target="_blank" class="btn-link maps">Ver Mapa</a></div>
+        </div>
+    </div>
+
+    <div class="app-page" id="page-congreso-sedes">
+        <div class="app-header">
+            <div class="logo-placeholder"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="header-info"><h2>SEDES OFICIALES</h2><p>Instalaciones del Evento</p></div>
+            <button onclick="irAPagina('page-main-menu')" class="btn-back"><i class="fa-solid fa-bars"></i> Menú</button>
+        </div>
+        <div class="content-area">
+            <h2 class="page-title">¿Dónde nos vemos?</h2>
+            <div class="info-card-white" style="border-top: 5px solid var(--futsal-blue);">
+                <span style="font-size: 11px; font-weight: 800; color: var(--futsal-orange);">SESIONES PRÁCTICAS EN PISTA</span>
+                <h3 style="font-size: 16px; margin: 4px 0; color: var(--text-main);">Polideportivo Municipal</h3>
+                <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 12px;">Dirección única: Rúa Alcalde Inocencio Fuciños Quintas, Nº 4, Melide.</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Polideportivo+Municipal+Alcalde+Inocencio+Fucinos+Quintas+4+Melide" target="_blank" class="btn-link maps" style="display:inline-block;">Ruta en Maps</a>
             </div>
-            
-            <div class="diptico-box">
-                <span><i class="fa-solid fa-file-pdf" style="color:#e74c3c; margin-right:6px;"></i> Rueiro - Callejero</span>
-                <a href="./rueiro _melide.pdf" target="_blank" class="btn-pdf-link">Abrir</a>
+            <div class="info-card-white" style="border-top: 5px solid var(--futsal-orange);">
+                <span style="font-size: 11px; font-weight: 800; color: var(--futsal-blue);">PONENCIAS TEÓRICAS Y VÍDEO</span>
+                <h3 style="font-size: 16px; margin: 4px 0; color: var(--text-main);">Casa Da Cultura</h3>
+                <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 12px;">Dirección: Rúa Antonieta, 0, 15800 Melide, A Coruña.</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Casa+da+Cultura+Melide+Coruna" target="_blank" class="btn-link maps" style="display:inline-block;">Ruta en Maps</a>
             </div>
+        </div>
+    </div>
+
+    <div class="app-page" id="page-agenda-horarios">
+        <div class="app-header">
+            <div class="logo-placeholder"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="header-info"><h2>PROGRAMACIÓN TÉCNICA</h2><p>Horarios del Fin de Semana</p></div>
+            <button onclick="irAPagina('page-main-menu')" class="btn-back"><i class="fa-solid fa-bars"></i> Menú</button>
+        </div>
+        <div class="content-area">
+            <h2 class="page-title">Jornada de Apertura</h2>
+            <div class="agenda-item">
+                <div class="agenda-time">17:00h - 18:00h</div>
+                <div class="agenda-title">Recepción y Entrega de Packs</div>
+                <div class="agenda-place"><i class="fa-solid fa-location-dot"></i> Hall de la Casa da Cultura</div>
+            </div>
+            <div class="agenda-item">
+                <div class="agenda-time">18:15h - 19:45h</div>
+                <div class="agenda-title">Ponencia: Estructuras y Ataque Posicional 4-0</div>
+                <div class="agenda-place"><i class="fa-solid fa-location-dot"></i> Sala Principal de la Casa da Cultura</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="app-page" id="page-lista-ponentes">
+        <div class="app-header">
+            <div class="logo-placeholder"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="header-info"><h2>CUADRO DOCENTE</h2><p>Profesores Invitados</p></div>
+            <button onclick="irAPagina('page-main-menu')" class="btn-back"><i class="fa-solid fa-bars"></i> Menú</button>
+        </div>
+        <div class="content-area">
+            <h2 class="page-title">Ponentes Oficiales</h2>
+            <div onclick="irAPagina('page-detalle-ponente-futsal')" class="speaker-strip" style="cursor: pointer;">
+                <div class="speaker-icon"><i class="fa-solid fa-clipboard-user"></i></div>
+                <div>
+                    <h4 style="font-size: 15px; font-weight: 700; color: var(--text-main);">Marta Sánchez</h4>
+                    <p style="font-size: 12px; color: var(--futsal-orange); font-weight: 600;">Entrenadora Nacional Nivel III</p>
+                </div>
+                <i class="fa-solid fa-chevron-right" style="margin-left: auto; color: var(--futsal-blue);"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="app-page" id="page-detalle-ponente-futsal">
+        <div class="app-header">
+            <div class="logo-placeholder"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="header-info"><h2>DETALLE JORNADA</h2><p>Contenido del Bloque</p></div>
+            <button onclick="irAPagina('page-lista-ponentes')" class="btn-back"><i class="fa-solid fa-chevron-left"></i> Volver</button>
+        </div>
+        <div class="content-area">
+            <h2 class="page-title">Ficha Técnico-Táctica</h2>
+            <div class="info-card-white">
+                <span style="background: var(--futsal-orange); color: white; padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; text-transform: uppercase;">Bloque Avanzado</span>
+                <h3 style="font-size: 20px; margin: 10px 0 5px 0; color: var(--futsal-blue);">Marta Sánchez</h3>
+                <h4 style="font-size: 14px; font-weight: 600; line-height: 1.4; margin-bottom: 12px; color: var(--text-main);">"Modelos organizativos en transiciones rápidas y repliegues"</h4>
+                <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5;">Análisis mediante software de vídeo sobre cómo preparar los repliegues automáticos del cuarteto de forma eficiente.</p>
+                <button onclick="irAPagina('page-lista-ponentes')" class="btn-happy" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 12px;">Regresar al Listado</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="app-page" id="page-lista-colaboradores">
+        <div class="app-header">
+            <div class="logo-placeholder"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="header-info"><h2>SOPORTE INSTITUCIONAL</h2><p>Entidades Patrocinadoras</p></div>
+            <button onclick="irAPagina('page-main-menu')" class="btn-back"><i class="fa-solid fa-bars"></i> Menú</button>
+        </div>
+        <div class="content-area">
+            <h2 class="page-title">Agradecimientos</h2>
+            <div class="link-box"><strong>Concello de Melide</strong><a href="https://www.google.com/maps/search/?api=1&query=Concello+de+Melide+Plaza+del+Convento+Galicia" target="_blank" class="btn-link maps">Sede</a></div>
+            <div class="link-box"><strong>Comité de Adestradores</strong><a href="https://adestradores.rfga.es" target="_blank" class="btn-link maps">Web Oficial</a></div>
         </div>
     </div>
 
@@ -122,7 +523,8 @@
     function irAPagina(idPaginaDestino) {
         const paginas = document.querySelectorAll('.app-page');
         paginas.forEach(pag => pag.classList.remove('active'));
-        document.getElementById(idPaginaDestino).classList.add('active');
+        const paginaActiva = document.getElementById(idPaginaDestino);
+        if (paginaActiva) paginaActiva.classList.add('active');
     }
 </script>
 </html>
