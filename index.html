@@ -6,7 +6,7 @@
     <title>XXVII Congreso Nacional ANEFS - Melide 2026</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght=700;800&family=Rubik:wght=400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
@@ -28,13 +28,11 @@
             font-family: var(--font-body);
         }
 
-        /* DISEÑO DE LA CANCHA DE FÚTBOL SALA COMPLETA */
         body { 
             background-color: #0f52ba; 
             position: relative;
             display: flex;
             flex-direction: column;
-            
             background-image: 
                 linear-gradient(to bottom, transparent 49.6%, rgba(255,255,255,0.8) 49.6%, rgba(255,255,255,0.8) 50.4%, transparent 50.4%),
                 radial-gradient(circle at center top, transparent 18%, rgba(255,255,255,0.7) 18.5%, rgba(255,255,255,0.7) 19.5%, transparent 20%),
@@ -87,7 +85,6 @@
             border: 2px dashed rgba(255, 255, 255, 0.5);
         }
 
-        /* SISTEMA MULTIPÁGINA */
         .app-page {
             display: none;
             width: 100%;
@@ -109,7 +106,6 @@
             to { opacity: 1; }
         }
 
-        /* CABECERA */
         .app-header {
             background: linear-gradient(135deg, rgba(0, 82, 204, 0.98) 0%, rgba(0, 44, 115, 0.98) 100%);
             padding: 16px 20px;
@@ -134,8 +130,13 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             flex-shrink: 0;
             border: 2px solid var(--futsal-orange);
-            color: var(--futsal-blue);
-            font-size: 18px;
+            overflow: hidden;
+        }
+        
+        .logo-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .header-info { flex-grow: 1; }
@@ -154,7 +155,6 @@
             margin-top: 1px;
         }
 
-        /* CONTENIDO TRANSLÚCIDO */
         .content-area {
             flex-grow: 1;
             padding: 24px 20px;
@@ -185,7 +185,6 @@
             border-radius: 3px;
         }
 
-        /* BOTONES */
         .btn-happy {
             background: linear-gradient(135deg, var(--futsal-orange) 0%, #E64A00 100%);
             color: white;
@@ -222,7 +221,6 @@
             gap: 4px;
         }
 
-        /* MENÚS Y TARJETAS */
         .menu-vertical-grid {
             display: flex;
             flex-direction: column;
@@ -312,6 +310,40 @@
         }
         .btn-link.maps { background-color: #2ECC71; }
 
+        .day-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 10px;
+            border-radius: 10px;
+            border: none;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-family: var(--font-title);
+            font-weight: 700;
+            font-size: 12px;
+            cursor: pointer;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .tab-btn.active {
+            background: var(--futsal-orange);
+            box-shadow: 0 4px 12px rgba(255, 85, 0, 0.3);
+        }
+
+        .agenda-container {
+            display: none;
+        }
+
+        .agenda-container.active {
+            display: block;
+        }
+
         .agenda-item {
             background: white;
             padding: 14px;
@@ -320,9 +352,14 @@
             border-left: 5px solid var(--futsal-blue);
             box-shadow: 0 2px 6px rgba(0,0,0,0.05);
         }
+        .agenda-item.break { border-left-color: #F1C40F; background: #FFFDF0; }
+        .agenda-item.meal { border-left-color: #2ECC71; background: #F4FBF7; }
+        .agenda-item.special { border-left-color: #9B59B6; background: #FAF5FB; }
+        
         .agenda-time { font-weight: 800; color: var(--futsal-orange); font-size: 13px; }
         .agenda-title { font-weight: 700; font-size: 14px; margin: 4px 0; color: var(--text-main); }
-        .agenda-place { font-size: 12px; color: var(--text-muted); }
+        .agenda-subtitle { font-size: 12px; color: var(--text-muted); font-style: italic; margin-bottom: 4px; }
+        .agenda-place { font-size: 11px; color: var(--text-muted); font-weight: 500; }
 
         .speaker-strip {
             background: white;
@@ -351,7 +388,7 @@
 
     <div class="app-page active" id="page-welcome">
         <div class="app-header">
-            <div class="logo-placeholder"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="logo-placeholder"><img src="./logo_anefs.png.png" alt="Logo"></div>
             <div class="header-info">
                 <h2>ANEFS FÚTBOL SALA</h2>
                 <p>Asociación Nacional de Entrenadores</p>
@@ -381,7 +418,7 @@
 
     <div class="app-page" id="page-main-menu">
         <div class="app-header">
-            <div class="logo-placeholder"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="logo-placeholder"><img src="./logo_anefs.png.png" alt="Logo"></div>
             <div class="header-info">
                 <h2>XXVII CONGRESO NACIONAL</h2>
                 <p>Panel de Control Oficial</p>
@@ -391,7 +428,7 @@
         <div class="content-area">
             <h2 class="page-title">Secciones de Interés</h2>
             <div class="menu-vertical-grid">
-                <div onclick="irAPagina('page-info-melide')" class="menu-card"><i class="fa-solid fa-map-location-dot"></i><h3>Melide</h3></div>
+                <div onclick="irAPagina('page-info-melide')" class="menu-card"><i class="fa-solid fa-map-location-dot"></i><h3>Melide y Servicios</h3></div>
                 <div onclick="irAPagina('page-congreso-sedes')" class="menu-card"><i class="fa-solid fa-building-columns"></i><h3>Sedes e Instalaciones</h3></div>
                 <div onclick="irAPagina('page-agenda-horarios')" class="menu-card"><i class="fa-solid fa-calendar-days"></i><h3>Cronograma y Horarios</h3></div>
                 <div onclick="irAPagina('page-lista-ponentes')" class="menu-card"><i class="fa-solid fa-chalkboard-user"></i><h3>Ponentes de Futsal</h3></div>
@@ -402,86 +439,279 @@
 
     <div class="app-page" id="page-info-melide">
         <div class="app-header">
-            <div class="logo-placeholder"><i class="fa-solid fa-shield-halved"></i></div>
-            <div class="header-info"><h2>ENTORNO DE LA SEDE</h2><p>Dípticos e Información Local</p></div>
+            <div class="logo-placeholder"><img src="./logo_anefs.png.png" alt="Logo"></div>
+            <div class="header-info"><h2>ENTORNO DE LA SEDE</h2><p>Servicios e Información Local</p></div>
             <button onclick="irAPagina('page-main-menu')" class="btn-back"><i class="fa-solid fa-bars"></i> Menú</button>
         </div>
         <div class="content-area">
             <h2 class="page-title">Descubre Melide</h2>
             
-            <h3 style="font-size: 13px; margin-bottom: 8px; color: #FFFFFF; text-transform: uppercase; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">Dípticos del Congreso:</h3>
-            <div style="margin-bottom: 20px;">
-                <div class="diptico-box"><span><i class="fa-solid fa-file-pdf" style="color:#e74c3c; margin-right:6px;"></i> Guia de Melide</span><a href="https://www.concellodemelide.org/turismo/dipticos/guia_melide.pdf" target="_blank" class="btn-pdf-link">Abrir PDF</a></div>
-                <div class="diptico-box"><span><i class="fa-solid fa-file-pdf" style="color:#e74c3c; margin-right:6px;"></i> Un dia en Melide</span><a href="https://www.concellodemelide.org/turismo/dipticos/un_dia_en_melide.pdf" target="_blank" class="btn-pdf-link">Abrir PDF</a></div>
-                <div class="diptico-box"><span><i class="fa-solid fa-file-pdf" style="color:#e74c3c; margin-right:6px;"></i> Rueiro - Callejero</span><a href="https://www.concellodemelide.org/turismo/dipticos/rueiro_melide.pdf" target="_blank" class="btn-pdf-link">Abrir PDF</a></div>
+            <h3 style="font-size: 13px; margin-bottom: 8px; color: #FFFFFF; text-transform: uppercase; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">Documentación:</h3>
+            <div style="margin-bottom: 15px;">
+                <div class="diptico-box"><span><i class="fa-solid fa-file-pdf" style="color:#e74c3c; margin-right:6px;"></i> Guia de Melide</span><a href="./guia_melide.pdf" target="_blank" class="btn-pdf-link">Abrir PDF</a></div>
+                <div class="diptico-box"><span><i class="fa-solid fa-file-pdf" style="color:#e74c3c; margin-right:6px;"></i> Un dia en Melide</span><a href="./un_dia_en_melide.pdf" target="_blank" class="btn-pdf-link">Abrir PDF</a></div>
+                <div class="diptico-box"><span><i class="fa-solid fa-file-pdf" style="color:#e74c3c; margin-right:6px;"></i> Rueiro - Callejero</span><a href="./rueiro _melide.pdf" target="_blank" class="btn-pdf-link">Abrir PDF</a></div>
             </div>
 
-            <h3 style="font-size: 13px; margin-bottom: 10px; color: #FFFFFF; text-transform: uppercase; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">Lugares de Interés:</h3>
-            <div class="link-box"><strong>Museo Terra de Melide</strong><a href="https://www.google.com/maps/search/?api=1&query=Museo+Terra+de+Melide+Galicia" target="_blank" class="btn-link maps">Ver Mapa</a></div>
-            <div class="link-box"><strong>Cruceiro Histórico</strong><a href="https://www.google.com/maps/search/?api=1&query=Cruceiro+de+Melide+Obra+de+San+Roque" target="_blank" class="btn-link maps">Ver Mapa</a></div>
-            <div class="link-box"><strong>Puente Romano</strong><a href="https://www.google.com/maps/search/?api=1&query=Ponte+vella+de+Furelos+Melide" target="_blank" class="btn-link maps">Ver Mapa</a></div>
-            <div class="link-box" style="border-left: 4px solid #2ECC71;"><strong>Área Recreativa de Furelos</strong><a href="https://www.google.com/maps/search/?api=1&query=Area+Recreativa+de+Furelos+Melide" target="_blank" class="btn-link maps">Ver Mapa</a></div>
+            <h3 style="font-size: 13px; margin-bottom: 8px; color: #FFFFFF; text-transform: uppercase; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">Restaurantes y Cenas:</h3>
+            <div style="margin-bottom: 15px;">
+                <div class="link-box"><strong>Pulpería A Garnacha<br><span style="font-size:10px;color:var(--text-muted);">Viernes y Comida Sábado</span></strong><a href="https://maps.app.goo.gl/6AEZn9kWXud3bEFq9,,,Cena" target="_blank" class="btn-link maps"><i class="fa-solid fa-utensils"></i> Maps</a></div>
+                <div class="link-box"><strong>Pensión Codeseira<br><span style="font-size:10px;color:var(--text-muted);">Sábado (Cena Gala)</span></strong><a href="https://maps.app.goo.gl/2WTW4p63jmtAsRfq7,,,Cena" target="_blank" class="btn-link maps"><i class="fa-solid fa-wine-glass"></i> Maps</a></div>
+            </div>
+
+            <h3 style="font-size: 13px; margin-bottom: 8px; color: #FFFFFF; text-transform: uppercase; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">Hoteles y Alojamientos Oficiales:</h3>
+            <div style="margin-bottom: 15px;">
+                <div class="link-box"><strong>Pensión Berenguela</strong><a href="https://maps.app.goo.gl/YpA9fdSSsuyCFNxB6,,,Organización" target="_blank" class="btn-link" style="background-color: #3498DB;"><i class="fa-solid fa-bed"></i> Maps</a></div>
+                <div class="link-box"><strong>Hotel Lux</strong><a href="https://maps.app.goo.gl/Pi5tsL5dwEj5tEe56,,,Ponentes" target="_blank" class="btn-link" style="background-color: #3498DB;"><i class="fa-solid fa-bed"></i> Maps</a></div>
+                <div class="link-box"><strong>Pensión Codeseira</strong><a href="https://maps.app.goo.gl/2WTW4p63jmtAsRfq7,,,Resto" target="_blank" class="btn-link" style="background-color: #3498DB;"><i class="fa-solid fa-bed"></i> Maps</a></div>
+            </div>
+
+            <h3 style="font-size: 13px; margin-bottom: 8px; color: #FFFFFF; text-transform: uppercase; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">Lugares de Interés:</h3>
+            <div class="link-box"><strong>Museo Terra de Melide</strong><a href="https://maps.google.com/?q=Museo+Terra+de+Melide" target="_blank" class="btn-link maps">Ver</a></div>
+            <div class="link-box"><strong>Cruceiro Histórico</strong><a href="https://maps.google.com/?q=Cruceiro+Melide" target="_blank" class="btn-link maps">Ver</a></div>
+            <div class="link-box"><strong>Puente Romano</strong><a href="https://maps.google.com/?q=Ponte+Vella+Furelos+Melide" target="_blank" class="btn-link maps">Ver</a></div>
+            <div class="link-box"><strong>Área Recreativa de Furelos</strong><a href="https://maps.google.com/?q=Area+Recreativa+Furelos" target="_blank" class="btn-link maps">Ver</a></div>
         </div>
     </div>
 
     <div class="app-page" id="page-congreso-sedes">
         <div class="app-header">
-            <div class="logo-placeholder"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="logo-placeholder"><img src="./logo_anefs.png.png" alt="Logo"></div>
             <div class="header-info"><h2>SEDES OFICIALES</h2><p>Instalaciones del Evento</p></div>
             <button onclick="irAPagina('page-main-menu')" class="btn-back"><i class="fa-solid fa-bars"></i> Menú</button>
         </div>
         <div class="content-area">
             <h2 class="page-title">¿Dónde nos vemos?</h2>
+            <div class="info-card-white" style="border-top: 5px solid var(--futsal-orange);">
+                <span style="font-size: 11px; font-weight: 800; color: var(--futsal-blue);">PONENCIAS TEÓRICAS</span>
+                <h3 style="font-size: 16px; margin: 4px 0; color: var(--text-main);">Casa Da Cultura</h3>
+                <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 12px;">Ubicación de ponencias teóricas y asambleas institucionales.</p>
+                <a href="https://maps.app.goo.gl/NPXk4ZDLPpTBuPXf7" target="_blank" class="btn-link maps" style="display:inline-block;"><i class="fa-solid fa-map-pin"></i> Abrir Mapa Oficial</a>
+            </div>
             <div class="info-card-white" style="border-top: 5px solid var(--futsal-blue);">
                 <span style="font-size: 11px; font-weight: 800; color: var(--futsal-orange);">SESIONES PRÁCTICAS EN PISTA</span>
                 <h3 style="font-size: 16px; margin: 4px 0; color: var(--text-main);">Polideportivo Municipal</h3>
-                <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 12px;">Dirección única: Rúa Alcalde Inocencio Fuciños Quintas, Nº 4, Melide.</p>
-                <a href="https://www.google.com/maps/search/?api=1&query=Polideportivo+Municipal+Alcalde+Inocencio+Fucinos+Quintas+4+Melide" target="_blank" class="btn-link maps" style="display:inline-block;">Ruta en Maps</a>
-            </div>
-            <div class="info-card-white" style="border-top: 5px solid var(--futsal-orange);">
-                <span style="font-size: 11px; font-weight: 800; color: var(--futsal-blue);">PONENCIAS TEÓRICAS Y VÍDEO</span>
-                <h3 style="font-size: 16px; margin: 4px 0; color: var(--text-main);">Casa Da Cultura</h3>
-                <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 12px;">Dirección: Rúa Antonieta, 0, 15800 Melide, A Coruña.</p>
-                <a href="https://www.google.com/maps/search/?api=1&query=Casa+da+Cultura+Melide+Coruna" target="_blank" class="btn-link maps" style="display:inline-block;">Ruta en Maps</a>
+                <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 12px;">Instalación para las ponencias dinámicas sobre la cancha y torneo.</p>
+                <a href="https://maps.app.goo.gl/srR4JFTYd1TdvZnd7" target="_blank" class="btn-link maps" style="display:inline-block;"><i class="fa-solid fa-map-pin"></i> Abrir Mapa Oficial</a>
             </div>
         </div>
     </div>
 
     <div class="app-page" id="page-agenda-horarios">
         <div class="app-header">
-            <div class="logo-placeholder"><i class="fa-solid fa-shield-halved"></i></div>
-            <div class="header-info"><h2>PROGRAMACIÓN TÉCNICA</h2><p>Horarios del Fin de Semana</p></div>
+            <div class="logo-placeholder"><img src="./logo_anefs.png.png" alt="Logo"></div>
+            <div class="header-info"><h2>CRONOGRAMA</h2><p>Horarios Oficiales por Columnas</p></div>
             <button onclick="irAPagina('page-main-menu')" class="btn-back"><i class="fa-solid fa-bars"></i> Menú</button>
         </div>
         <div class="content-area">
-            <h2 class="page-title">Jornada de Apertura</h2>
-            <div class="agenda-item">
-                <div class="agenda-time">17:00h - 18:00h</div>
-                <div class="agenda-title">Recepción y Entrega de Packs</div>
-                <div class="agenda-place"><i class="fa-solid fa-location-dot"></i> Hall de la Casa da Cultura</div>
+            <div class="day-tabs">
+                <button class="tab-btn active" onclick="cambiarDia('viernes', this)">Viernes</button>
+                <button class="tab-btn" onclick="cambiarDia('sabado', this)">Sábado</button>
+                <button class="tab-btn" onclick="cambiarDia('domingo', this)">Domingo</button>
             </div>
-            <div class="agenda-item">
-                <div class="agenda-time">18:15h - 19:45h</div>
-                <div class="agenda-title">Ponencia: Estructuras y Ataque Posicional 4-0</div>
-                <div class="agenda-place"><i class="fa-solid fa-location-dot"></i> Sala Principal de la Casa da Cultura</div>
+
+            <div id="agenda-viernes" class="agenda-container active">
+                <div class="agenda-item special">
+                    <div class="agenda-time">15:30h</div>
+                    <div class="agenda-title">Recepción de Congresistas</div>
+                    <div class="agenda-place"><i class="fa-solid fa-location-dot"></i> Casa da Cultura</div>
+                </div>
+                <div class="agenda-item special">
+                    <div class="agenda-time">16:15h</div>
+                    <div class="agenda-title">Asamblea General ANEFS</div>
+                    <div class="agenda-place"><i class="fa-solid fa-location-dot"></i> Casa da Cultura</div>
+                </div>
+                <div class="agenda-item">
+                    <div class="agenda-time">17:00h</div>
+                    <div class="agenda-title">Ponencia 1: Héctor Souto</div>
+                    <div class="agenda-subtitle">"Factores contextuales del juego en el carril central"</div>
+                    <div class="agenda-place"><i class="fa-solid fa-location-dot"></i> Casa da Cultura (Teórica)</div>
+                </div>
+                <div class="agenda-item break">
+                    <div class="agenda-time">18:15h</div>
+                    <div class="agenda-title">Coffee Break</div>
+                    <div class="agenda-place"><i class="fa-solid fa-mug-hot"></i> Descanso</div>
+                </div>
+                <div class="agenda-item">
+                    <div class="agenda-time">18:30h</div>
+                    <div class="agenda-title">Ponencia 2: Miki Belda</div>
+                    <div class="agenda-subtitle">"Desmontando modas. Haciendo pensar."</div>
+                    <div class="agenda-place"><i class="fa-solid fa-location-dot"></i> Casa da Cultura (Teórica)</div>
+                </div>
+                <div class="agenda-item break">
+                    <div class="agenda-time">19:45h</div>
+                    <div class="agenda-title">Final de la Tarde</div>
+                </div>
+                <div class="agenda-item meal">
+                    <div class="agenda-time">22:00h</div>
+                    <div class="agenda-title">Cena Oficial</div>
+                    <div class="agenda-place"><i class="fa-solid fa-utensils"></i> Pulpería A Garnacha</div>
+                </div>
+            </div>
+
+            <div id="agenda-sabado" class="agenda-container">
+                <div class="agenda-item">
+                    <div class="agenda-time">09:00h</div>
+                    <div class="agenda-title">Ponencia 3: Cristhian Fernández</div>
+                    <div class="agenda-subtitle">"Liderar desde la comunicación"</div>
+                    <div class="agenda-place"><i class="fa-solid fa-location-dot"></i> Casa da Cultura (Teórica)</div>
+                </div>
+                <div class="agenda-item">
+                    <div class="agenda-time">10:15h</div>
+                    <div class="agenda-title">Ponencia 7: Diego Ríos</div>
+                    <div class="agenda-subtitle">"Modelo defensivo"</div>
+                    <div class="agenda-place"><i class="fa-solid fa-location-dot"></i> Casa da Cultura (Teórica)</div>
+                </div>
+                <div class="agenda-item break">
+                    <div class="agenda-time">11:15h</div>
+                    <div class="agenda-title">Coffee Break</div>
+                    <div class="agenda-place"><i class="fa-solid fa-mug-hot"></i> Descanso</div>
+                </div>
+                <div class="agenda-item">
+                    <div class="agenda-time">11:30h</div>
+                    <div class="agenda-title">Ponencia 10: Josan González</div>
+                    <div class="agenda-subtitle">"Mirada integral al juego con pivot: Cómo generar comportamientos a través de estructuras"</div>
+                    <div class="agenda-place"><i class="fa-solid fa-location-dot"></i> Casa da Cultura (Teórica)</div>
+                </div>
+                <div class="agenda-item meal">
+                    <div class="agenda-time">13:15h - 14:00h</div>
+                    <div class="agenda-title">Comida Libre / Descanso</div>
+                    <div class="agenda-place"><i class="fa-solid fa-utensils"></i> Pulpería A Garnacha</div>
+                </div>
+                <div class="agenda-item">
+                    <div class="agenda-time">16:00h</div>
+                    <div class="agenda-title">Ponencia 6: Luis López-Tulla</div>
+                    <div class="agenda-subtitle">"Modelo ofensivo de Poio Pescamar: Filosofía, estructuras y conceptos"</div>
+                    <div class="agenda-place"><i class="fa-solid fa-location-dot"></i> Polideportivo (Práctica)</div>
+                </div>
+                <div class="agenda-item break">
+                    <div class="agenda-time">17:15h</div>
+                    <div class="agenda-title">Coffee Break</div>
+                </div>
+                <div class="agenda-item">
+                    <div class="agenda-time">17:30h</div>
+                    <div class="agenda-title">Ponencia 4: Ana Cabello</div>
+                    <div class="agenda-subtitle">"Del aprendizaje al rendimiento: Una metodología en pista"</div>
+                    <div class="agenda-place"><i class="fa-solid fa-location-dot"></i> Polideportivo (Práctica)</div>
+                </div>
+                <div class="agenda-item break">
+                    <div class="agenda-time">18:45h</div>
+                    <div class="agenda-title">Coffee Break</div>
+                </div>
+                <div class="agenda-item">
+                    <div class="agenda-time">19:00h</div>
+                    <div class="agenda-title">Ponencia 8: Jorge Palos</div>
+                    <div class="agenda-subtitle">"Estructura de trabajo de las acciones a balón parado en Wanapix AD Sala 10 Zaragoza"</div>
+                    <div class="agenda-place"><i class="fa-solid fa-location-dot"></i> Polideportivo (Práctica)</div>
+                </div>
+                <div class="agenda-item break">
+                    <div class="agenda-time">20:15h</div>
+                    <div class="agenda-title">Final 2º Día</div>
+                </div>
+                <div class="agenda-item meal">
+                    <div class="agenda-time">22:00h</div>
+                    <div class="agenda-title">Cena de Gala</div>
+                    <div class="agenda-place"><i class="fa-solid fa-wine-glass"></i> Pensión Codeseira</div>
+                </div>
+            </div>
+
+            <div id="agenda-domingo" class="agenda-container">
+                <div class="agenda-item special">
+                    <div class="agenda-time">09:00h</div>
+                    <div class="agenda-title">Torneo Imanol</div>
+                    <div class="agenda-place"><i class="fa-solid fa-trophy"></i> Polideportivo Municipal</div>
+                </div>
+                <div class="agenda-item">
+                    <div class="agenda-time">10:00h</div>
+                    <div class="agenda-title">Ponencia 9: Morenín</div>
+                    <div class="agenda-subtitle">"Análisis Jaén Paraíso Interior Final Copa Granada 2026"</div>
+                    <div class="agenda-place"><i class="fa-solid fa-location-dot"></i> Casa da Cultura (Teórica)</div>
+                </div>
+                <div class="agenda-item break">
+                    <div class="agenda-time">12:15h</div>
+                    <div class="agenda-title">Coffee Break</div>
+                </div>
+                <div class="agenda-item">
+                    <div class="agenda-time">12:30h</div>
+                    <div class="agenda-title">Ponencia 5: Fran Burgueño</div>
+                    <div class="agenda-subtitle">"Trabajo coordinativo para porteros aplicado a la Técnica"</div>
+                    <div class="agenda-place"><i class="fa-solid fa-location-dot"></i> Polideportivo (Práctica)</div>
+                </div>
+                <div class="agenda-item special">
+                    <div class="agenda-time">12:45h</div>
+                    <div class="agenda-title">Fin del Congreso</div>
+                    <div class="agenda-place"><i class="fa-solid fa-flag-checkered"></i> ¡Clausura de la Edición XXVII!</div>
+                </div>
             </div>
         </div>
     </div>
 
     <div class="app-page" id="page-lista-ponentes">
         <div class="app-header">
-            <div class="logo-placeholder"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="logo-placeholder"><img src="./logo_anefs.png.png" alt="Logo"></div>
             <div class="header-info"><h2>CUADRO DOCENTE</h2><p>Profesores Invitados</p></div>
             <button onclick="irAPagina('page-main-menu')" class="btn-back"><i class="fa-solid fa-bars"></i> Menú</button>
         </div>
         <div class="content-area">
             <h2 class="page-title">Ponentes Oficiales</h2>
-            <div onclick="irAPagina('page-detalle-ponente-futsal')" class="speaker-strip" style="cursor: pointer;">
+            
+            <div onclick="verDetallePonente('Héctor Souto', 'Factores contextuales del juego en el carril central', 'Análisis en profundidad sobre las variantes técnico-tácticas que influyen y determinan el juego combinativo por el eje central de la cancha.')" class="speaker-strip" style="cursor: pointer;">
                 <div class="speaker-icon"><i class="fa-solid fa-clipboard-user"></i></div>
-                <div>
-                    <h4 style="font-size: 15px; font-weight: 700; color: var(--text-main);">Marta Sánchez</h4>
-                    <p style="font-size: 12px; color: var(--futsal-orange); font-weight: 600;">Entrenadora Nacional Nivel III</p>
-                </div>
+                <div><h4>Héctor Souto</h4><p style="font-size: 11px; color: var(--futsal-orange); font-weight: 600;">Ponencia 1 - Teórica</p></div>
+                <i class="fa-solid fa-chevron-right" style="margin-left: auto; color: var(--futsal-blue);"></i>
+            </div>
+
+            <div onclick="verDetallePonente('Miki Belda', 'Desmontando modas. Haciendo pensar.', 'Una ponencia reflexiva orientada a analizar críticamente las tendencias actuales en los entrenamientos y cómo fomentar el desarrollo cognitivo real del jugador.')" class="speaker-strip" style="cursor: pointer;">
+                <div class="speaker-icon"><i class="fa-solid fa-clipboard-user"></i></div>
+                <div><h4>Miki Belda</h4><p style="font-size: 11px; color: var(--futsal-orange); font-weight: 600;">Ponencia 2 - Teórica</p></div>
+                <i class="fa-solid fa-chevron-right" style="margin-left: auto; color: var(--futsal-blue);"></i>
+            </div>
+
+            <div onclick="verDetallePonente('Cristhian Fernández', 'Liderar desde la comunicación', 'Estrategias de comunicación asertiva y liderazgo dentro del vestuario aplicadas a la gestión de grupos en alta competencia.')" class="speaker-strip" style="cursor: pointer;">
+                <div class="speaker-icon"><i class="fa-solid fa-clipboard-user"></i></div>
+                <div><h4>Cristhian Fernández</h4><p style="font-size: 11px; color: var(--futsal-orange); font-weight: 600;">Ponencia 3 - Teórica</p></div>
+                <i class="fa-solid fa-chevron-right" style="margin-left: auto; color: var(--futsal-blue);"></i>
+            </div>
+
+            <div onclick="verDetallePonente('Ana Cabello', 'Del aprendizaje al rendimiento: Una metodología en pista', 'Sesión práctica en pista sobre la progresión metodológica de las tareas de entrenamiento para transferir el aprendizaje mecánico al juego real.')" class="speaker-strip" style="cursor: pointer;">
+                <div class="speaker-icon"><i class="fa-solid fa-clipboard-user"></i></div>
+                <div><h4>Ana Cabello</h4><p style="font-size: 11px; color: var(--futsal-orange); font-weight: 600;">Ponencia 4 - Práctica</p></div>
+                <i class="fa-solid fa-chevron-right" style="margin-left: auto; color: var(--futsal-blue);"></i>
+            </div>
+
+            <div onclick="verDetallePonente('Fran Burgueño', 'Trabajo coordinativo para porteros aplicado a la Técnica', 'Demostración en pista sobre ejercicios coordinativos específicos de porteros de fútbol sala orientados a mejorar la respuesta gestual técnica.')" class="speaker-strip" style="cursor: pointer;">
+                <div class="speaker-icon"><i class="fa-solid fa-clipboard-user"></i></div>
+                <div><h4>Fran Burgueño</h4><p style="font-size: 11px; color: var(--futsal-orange); font-weight: 600;">Ponencia 5 - Práctica</p></div>
+                <i class="fa-solid fa-chevron-right" style="margin-left: auto; color: var(--futsal-blue);"></i>
+            </div>
+
+            <div onclick="verDetallePonente('Luis López-Tulla', 'Modelo ofensivo de Poio Pescamar: Filosofía, estructuras y conceptos', 'Explicación del sistema táctico de ataque posicional y las ideas fundamentales que caracterizan el juego ofensivo del club en la élite.')" class="speaker-strip" style="cursor: pointer;">
+                <div class="speaker-icon"><i class="fa-solid fa-clipboard-user"></i></div>
+                <div><h4>Luis López-Tulla</h4><p style="font-size: 11px; color: var(--futsal-orange); font-weight: 600;">Ponencia 6 - Práctica</p></div>
+                <i class="fa-solid fa-chevron-right" style="margin-left: auto; color: var(--futsal-blue);"></i>
+            </div>
+
+            <div onclick="verDetallePonente('Diego Ríos', 'Modelo defensivo', 'Estructuras y pautas colectivas para la organización de un bloque defensivo sólido frente a diferentes sistemas tácticos rivales.')" class="speaker-strip" style="cursor: pointer;">
+                <div class="speaker-icon"><i class="fa-solid fa-clipboard-user"></i></div>
+                <div><h4>Diego Ríos</h4><p style="font-size: 11px; color: var(--futsal-orange); font-weight: 600;">Ponencia 7 - Teórica</p></div>
+                <i class="fa-solid fa-chevron-right" style="margin-left: auto; color: var(--futsal-blue);"></i>
+            </div>
+
+            <div onclick="verDetallePonente('Jorge Palos', 'Estructura de trabajo de las acciones a balón parado en Wanapix AD Sala 10 Zaragoza', 'Desglose práctico en pista del catálogo de jugadas de estrategia (córners, bandas, faltas) utilizadas en el fútbol sala profesional.')" class="speaker-strip" style="cursor: pointer;">
+                <div class="speaker-icon"><i class="fa-solid fa-clipboard-user"></i></div>
+                <div><h4>Jorge Palos</h4><p style="font-size: 11px; color: var(--futsal-orange); font-weight: 600;">Ponencia 8 - Práctica</p></div>
+                <i class="fa-solid fa-chevron-right" style="margin-left: auto; color: var(--futsal-blue);"></i>
+            </div>
+
+            <div onclick="verDetallePonente('Morenín', 'Análisis Jaén Paraíso Interior Final Copa Granada 2026', 'Sesión teórica audiovisual desglosando las claves tácticas, aciertos y errores del partido decisivo de la Copa.')" class="speaker-strip" style="cursor: pointer;">
+                <div class="speaker-icon"><i class="fa-solid fa-clipboard-user"></i></div>
+                <div><h4>Morenín</h4><p style="font-size: 11px; color: var(--futsal-orange); font-weight: 600;">Ponencia 9 - Teórica</p></div>
+                <i class="fa-solid fa-chevron-right" style="margin-left: auto; color: var(--futsal-blue);"></i>
+            </div>
+
+            <div onclick="verDetallePonente('Josan González', 'Mirada integral al juego con pivot: Cómo generar comportamientos a través de estructuras', 'Análisis sistémico del juego ofensivo apoyado en la figura del pívot y cómo sincronizar los movimientos del resto del cuarteto.')" class="speaker-strip" style="cursor: pointer;">
+                <div class="speaker-icon"><i class="fa-solid fa-clipboard-user"></i></div>
+                <div><h4>Josan González</h4><p style="font-size: 11px; color: var(--futsal-orange); font-weight: 600;">Ponencia 10 - Teórica</p></div>
                 <i class="fa-solid fa-chevron-right" style="margin-left: auto; color: var(--futsal-blue);"></i>
             </div>
         </div>
@@ -489,17 +719,17 @@
 
     <div class="app-page" id="page-detalle-ponente-futsal">
         <div class="app-header">
-            <div class="logo-placeholder"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="logo-placeholder"><img src="./logo_anefs.png.png" alt="Logo"></div>
             <div class="header-info"><h2>DETALLE JORNADA</h2><p>Contenido del Bloque</p></div>
             <button onclick="irAPagina('page-lista-ponentes')" class="btn-back"><i class="fa-solid fa-chevron-left"></i> Volver</button>
         </div>
         <div class="content-area">
             <h2 class="page-title">Ficha Técnico-Táctica</h2>
             <div class="info-card-white">
-                <span style="background: var(--futsal-orange); color: white; padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; text-transform: uppercase;">Bloque Avanzado</span>
-                <h3 style="font-size: 20px; margin: 10px 0 5px 0; color: var(--futsal-blue);">Marta Sánchez</h3>
-                <h4 style="font-size: 14px; font-weight: 600; line-height: 1.4; margin-bottom: 12px; color: var(--text-main);">"Modelos organizativos en transiciones rápidas y repliegues"</h4>
-                <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5;">Análisis mediante software de vídeo sobre cómo preparar los repliegues automáticos del cuarteto de forma eficiente.</p>
+                <span style="background: var(--futsal-orange); color: white; padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; text-transform: uppercase;">Bloque del Congreso</span>
+                <h3 id="det-nombre" style="font-size: 20px; margin: 10px 0 5px 0; color: var(--futsal-blue);">Nombre</h3>
+                <h4 id="det-titulo" style="font-size: 14px; font-weight: 600; line-height: 1.4; margin-bottom: 12px; color: var(--text-main);">"Título"</h4>
+                <p id="det-desc" style="font-size: 13px; color: var(--text-muted); line-height: 1.5;">Descripción</p>
                 <button onclick="irAPagina('page-lista-ponentes')" class="btn-happy" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 12px;">Regresar al Listado</button>
             </div>
         </div>
@@ -507,14 +737,14 @@
 
     <div class="app-page" id="page-lista-colaboradores">
         <div class="app-header">
-            <div class="logo-placeholder"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="logo-placeholder"><img src="./logo_anefs.png.png" alt="Logo"></div>
             <div class="header-info"><h2>SOPORTE INSTITUCIONAL</h2><p>Entidades Patrocinadoras</p></div>
             <button onclick="irAPagina('page-main-menu')" class="btn-back"><i class="fa-solid fa-bars"></i> Menú</button>
         </div>
         <div class="content-area">
             <h2 class="page-title">Agradecimientos</h2>
-            <div class="link-box"><strong>Concello de Melide</strong><a href="https://www.google.com/maps/search/?api=1&query=Concello+de+Melide+Plaza+del+Convento+Galicia" target="_blank" class="btn-link maps">Sede</a></div>
-            <div class="link-box"><strong>Comité de Adestradores</strong><a href="https://adestradores.rfga.es" target="_blank" class="btn-link maps">Web Oficial</a></div>
+            <div class="link-box"><strong>Concello de Melide</strong><a href="https://www.concellodemelide.gal" target="_blank" class="btn-link maps" style="background-color: var(--futsal-blue);">Sede</a></div>
+            <div class="link-box"><strong>Comité de Adestradores</strong><a href="https://adestradores.rfga.es" target="_blank" class="btn-link maps" style="background-color: var(--futsal-blue);">Web Oficial</a></div>
         </div>
     </div>
 
@@ -525,6 +755,23 @@
         paginas.forEach(pag => pag.classList.remove('active'));
         const paginaActiva = document.getElementById(idPaginaDestino);
         if (paginaActiva) paginaActiva.classList.add('active');
+    }
+
+    function cambiarDia(dia, boton) {
+        const botones = document.querySelectorAll('.tab-btn');
+        botones.forEach(btn => btn.classList.remove('active'));
+        boton.classList.add('active');
+
+        const agendas = document.querySelectorAll('.agenda-container');
+        agendas.forEach(ag => ag.classList.remove('active'));
+        document.getElementById('agenda-' + dia).classList.add('active');
+    }
+
+    function verDetallePonente(nombre, titulo, descripcion) {
+        document.getElementById('det-nombre').innerText = nombre;
+        document.getElementById('det-titulo').innerText = '"' + titulo + '"';
+        document.getElementById('det-desc').innerText = descripcion;
+        irAPagina('page-detalle-ponente-futsal');
     }
 </script>
 </html>
